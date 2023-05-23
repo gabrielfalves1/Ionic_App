@@ -3,7 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // Import the functions you need from the SDKs you need
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  firebaseConfig: {
+    apiKey: "AIzaSyBsHxWA_iA8LKIGP-qDAXujg_jz7t8rt-Y",
+    authDomain: "salaomobile-af6bb.firebaseapp.com",
+    projectId: "salaomobile-af6bb",
+    storageBucket: "salaomobile-af6bb.appspot.com",
+    messagingSenderId: "791890626229",
+    appId: "1:791890626229:web:1ea077d51c1e66ebc420fc",
+    measurementId: "G-DTTDMYB3LB"
+  }
+
 };
 
 /*

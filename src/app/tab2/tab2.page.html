@@ -6,6 +6,8 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content [fullscreen]="true">
 
   <form #fc="ngForm">
@@ -29,14 +31,13 @@
           placeholder="Digite sua senha" required></ion-input>
       </ion-item>
 
-
       <ion-item class="pt-10">
-        <ion-input label="Senha" [(ngModel)]="user.telefone" name="telefone" label-placement="floating" fill="out-line"
-          placeholder="Digite sua senha" required></ion-input>
+        <ion-input label="Telefone" [(ngModel)]="user.telefone" name="telefone" label-placement="floating"
+          fill="out-line" placeholder="Digite seu telefone" required></ion-input>
       </ion-item>
 
       <ion-item class="pt-10">
-        <ion-button [disabled]="fc.invalid" slot="end">Salvar</ion-button>
+        <ion-button [disabled]="fc.invalid" slot="end" (click)="save()">Salvar</ion-button>
         <ion-button color="danger" slot="end">Cancelar</ion-button>
       </ion-item>
 
