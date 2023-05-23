@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../model/user';
+import { AlertController } from '@ionic/angular';
+import { UserService } from '../services/user-service';
 
 @Component({
   selector: 'app-tab2',
@@ -8,8 +10,28 @@ import { User } from '../model/user';
 })
 export class Tab2Page {
 
-  constructor() { }
+  constructor(
+    private alertController: AlertController,
+    private userService: UserService
+  ) { }
 
   user = new User()
+
+  async presentAlert(tipo: string, texto: string) {
+    const alert = await this.alertController.create({
+      header: tipo,
+      //subHeader: 'Important message',
+      message: texto,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  save() {
+    this.userService.add(this.user);
+    console.log(this.user);
+    this.presentAlert("Aviso", "Cadastrado");
+  }
+
 
 }

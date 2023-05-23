@@ -32,11 +32,9 @@
 
       <ion-item class="pt-10">
         {{user.nome}}
-        <ion-button [disabled]="fc.invalid" slot="end">Salvar</ion-button>
+        <ion-button [disabled]="fc.invalid" slot="end" (click)="save()">Salvar</ion-button>
         <ion-button color="danger" slot="end">Cancelar</ion-button>
       </ion-item>
-
-
 
     </ion-list>
   </form>
