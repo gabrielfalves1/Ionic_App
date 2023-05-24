@@ -1,17 +1,59 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Produtos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+
+  <form #fc="ngForm">
+
+    <ion-list>
+      <ion-title>Cadastro de Produtos</ion-title>
+
+      <ion-item class="pt-10">
+        <ion-input label="Nome" [(ngModel)]="produto.nome" name="nome" label-placement="floating" fill="solid"
+          pattern=".{3,}" placeholder="Digite o nome do produto" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Categoria" [(ngModel)]="produto.categoria" name=" categoria" label-placement="floating"
+          pattern=".{3,}" fill="solid" placeholder="Digite a categoria do produto" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-textarea label="Descrição" [(ngModel)]="produto.descricao" name="descricao" labelPlacement="floating"
+          pattern=".{3,}" fill="solid" placeholder="Digite a descrição do produto" required></ion-textarea>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input type="number" label="Quantidade" [(ngModel)]="produto.quant" name="quantidade"
+          placeholder="Digite a quantidade do produto" labelPlacement="floating" fill="solid" inputMode="numeric"
+          pattern="^(?!0*(\.0+)?$)(\d+|\d*\.\d+)$" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input type="number" label="Valor" name="valor" [(ngModel)]="produto.valor"
+          placeholder="Digite o valor em reais" labelPlacement="floating" fill="solid" inputMode="numeric"
+          pattern="^(?!0*(\.0+)?$)(\d+|\d*\.\d+)$" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+
+
+      </ion-item>
+
+      <ion-item>
+        <ion-button color="medium" slot="end">Cancelar</ion-button>
+        <ion-button color="tertiary" slot="end" [disabled]="fc.invalid" (click)="save()">Cadastrar</ion-button>
+      </ion-item>
+
+    </ion-list>
+
+
+  </form>
+
 </ion-content>

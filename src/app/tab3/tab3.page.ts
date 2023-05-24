@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Produto } from '../model/produto';
+import { ProdutoService } from '../services/produto.service';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +11,30 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(private alertController: AlertController) { }
+
+  produto = new Produto();
+
+  produtoService = new ProdutoService();
+
+  async presentAlert(titulo: string, mensagem: string) {
+    const alert = await this.alertController.create({
+      header: titulo,
+      message: mensagem,
+      buttons: ['Fechar'],
+    });
+
+    await alert.present();
+  }
+
+
+  async save() {
+
+    const response = await this.produtoService.addProduto(this.produto)
+
+    this.presentAlert("Sucesso", "Produto adicionado com sucesso!")
+
+    console.log(this.produto)
+  }
 
 }
