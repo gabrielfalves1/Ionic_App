@@ -7,35 +7,5 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form #fc="ngForm">
-    <ion-list>
-      <ion-item class="pt-10">
-        <ion-input label="Nome" label-placement="floating" fill="outline" placeholder="Digite seu nome"
-          [(ngModel)]="user.nome" name="nome" required></ion-input>
-      </ion-item>
 
-
-      <ion-item class="pt-10">
-        <ion-input type="email" label="E-mail" label-placement="floating" fill="outline" placeholder="Digite seu email"
-          [(ngModel)]="user.email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
-      </ion-item>
-
-      <ion-item class="pt-10">
-        <ion-input label="Senha" label-placement="floating" fill="outline" placeholder="Digite sua Senha"
-          [(ngModel)]="user.senha" name="senha"></ion-input>
-      </ion-item>
-
-      <ion-item class="pt-10">
-        <ion-input label="Telefone" label-placement="floating" fill="outline" placeholder="Digite seu Telefone"
-          [(ngModel)]="user.telefone" name="telefone"></ion-input>
-      </ion-item>
-
-      <ion-item class="pt-10">
-        {{user.nome}}
-        <ion-button [disabled]="fc.invalid" slot="end" (click)="save()">Salvar</ion-button>
-        <ion-button color="danger" slot="end">Cancelar</ion-button>
-      </ion-item>
-
-    </ion-list>
-  </form>
 </ion-content>
