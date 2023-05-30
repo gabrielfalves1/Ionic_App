@@ -11,11 +11,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab3Page {
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController, private produtoService: ProdutoService) { }
 
   produto = new Produto();
-
-  produtoService = new ProdutoService();
 
   async presentAlert(titulo: string, mensagem: string) {
     const alert = await this.alertController.create({

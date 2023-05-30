@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>userForm</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">userForm</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <form #fc="ngForm">
+
+    <ion-list>
+
+      <ion-item class="pt-10">
+        <ion-input [(ngModel)]="user.nome" name="nome" label="Nome" label-placement="floating" fill="out-line"
+          placeholder="Digite seu nome" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Email"
+          pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+          [(ngModel)]="user.email" name="email" label-placement="floating" fill="out-line"
+          placeholder="Digite seu email" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Senha" type="password" [(ngModel)]="user.senha" name="senha" label-placement="floating"
+          fill="out-line" placeholder="Digite sua senha" required #pass="ngModel"></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Senha" type="password" [(ngModel)]="confpass" #confpass="ngModel" name="senha"
+          label-placement="floating" fill="out-line" placeholder="Digite sua senha" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Telefone" [(ngModel)]="user.telefone" name="telefone" label-placement="floating"
+          fill="out-line" placeholder="Digite seu telefone" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-button [disabled]="fc.invalid ||(pass !== confpass)" slot="end" (click)="save()">Salvar</ion-button>
+        <ion-button color="danger" slot="end" routerLink="/">Cancelar</ion-button>
+      </ion-item>
+
+    </ion-list>
+
+  </form>
+
+
+</ion-content>

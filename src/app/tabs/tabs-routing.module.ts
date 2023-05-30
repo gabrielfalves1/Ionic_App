@@ -16,6 +16,18 @@ const routes: Routes = [
         loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
       },
       {
+        path: 'userForm',
+        loadChildren: () => import('../pages/user-form/user-form.module').then(m => m.UserFormPageModule)
+      },
+      {
+        path: 'userEnter',
+        loadChildren: () => import('../pages/user-enter/user-enter.module').then(m => m.UserEnterPageModule)
+      },
+      {
+        path: 'userList',
+        loadChildren: () => import('../pages/user-list/user-list.module').then(m => m.UserListPageModule)
+      },
+      {
         path: 'tab3',
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
@@ -36,4 +48,4 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
