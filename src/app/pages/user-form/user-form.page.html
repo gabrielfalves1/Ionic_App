@@ -39,7 +39,7 @@
       </ion-item>
 
       <div class="pt-10 ion-text-end">
-        <ion-button [disabled]="fc.invalid || (pass !== confpass)" (click)="save()">Salvar</ion-button>
+        <ion-button [disabled]="fc.invalid || (pass.value !== confpass.value)" (click)="save()">Salvar</ion-button>
         <ion-button color="danger" routerLink="/">Cancelar</ion-button>
       </div>
 
