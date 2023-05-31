@@ -12,4 +12,9 @@ export class UserEnterPage implements OnInit {
   ngOnInit() {
   }
 
+  email: string = "";
+  senha: string = "";
+
+  enter() { }
+
 }
