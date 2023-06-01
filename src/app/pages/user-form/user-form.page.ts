@@ -20,8 +20,6 @@ export class UserFormPage implements OnInit {
   user = new User();
   confsenha = "";
 
-
-
   async presentAlert(tipo: string, texto: string) {
     const alert = await this.alertController.create({
       header: tipo,
@@ -33,11 +31,18 @@ export class UserFormPage implements OnInit {
     await alert.present();
   }
 
-
   save() {
-    //this.userService.add(this.user);
-    //console.log(this.user)
-    this.presentAlert("Aviso", "Cadastrado");
+
+    this.userService.add(this.user)
+      .then((res) => {
+
+        console.log(res)
+        this.presentAlert("Aviso", "Cadastrado");
+      })
+      .catch((err) => {
+        console.log(err);
+        this.presentAlert("Erro", "Não Cadastrado");
+      });
 
   }
 

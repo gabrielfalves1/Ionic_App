@@ -30,12 +30,12 @@
 
       <ion-item class="pt-10">
         <ion-input label="Senha" type="password" [(ngModel)]="user.senha" name="senha" label-placement="floating"
-          fill="out-line" placeholder="Digite sua senha" required #pass="ngModel"></ion-input>
+          fill="out-line" placeholder="Digite sua senha" required></ion-input>
       </ion-item>
 
       <ion-item class="pt-10">
-        <ion-input label="Senha" type="password" [(ngModel)]="confpass" #confpass="ngModel" name="senha"
-          label-placement="floating" fill="out-line" placeholder="Digite sua senha" required></ion-input>
+        <ion-input label="Confirme a senha" type="password" (ngModel)="confpass" #confpass name="senha"
+          label-placement="floating" fill="out-line" placeholder="Confirme a senha" required></ion-input>
       </ion-item>
 
       <ion-item class="pt-10">
@@ -44,13 +44,12 @@
       </ion-item>
 
       <ion-item class="pt-10">
-        <ion-button [disabled]="fc.invalid ||(pass !== confpass)" slot="end" (click)="save()">Salvar</ion-button>
+        <ion-button [disabled]="fc.invalid" slot="end" (click)="save()">Salvar</ion-button>
         <ion-button color="danger" slot="end" routerLink="/">Cancelar</ion-button>
       </ion-item>
 
     </ion-list>
 
   </form>
-
 
 </ion-content>
