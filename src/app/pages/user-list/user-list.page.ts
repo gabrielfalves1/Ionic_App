@@ -17,9 +17,9 @@ export class UserListPage implements OnInit {
 
   ngOnInit() {
     this.userService.list().subscribe(
-      res => {
+      (res) => {
         console.log(res);
-        //this.users = res;
+        this.users = <User[]>res;
       })
   }
 
