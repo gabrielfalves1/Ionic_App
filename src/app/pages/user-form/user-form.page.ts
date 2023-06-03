@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
@@ -10,15 +11,26 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserFormPage implements OnInit {
 
-  ngOnInit() {
-  }
-
   constructor(
     private alertController: AlertController,
-    private userService: UserService
+    private userService: UserService,
+    private activeRouter: ActivatedRoute
   ) { }
 
   user = new User()
+  _id: string | null = null;
+
+  ngOnInit() {
+  }
+
+  getParam() {
+    this._id = this.activeRouter.snapshot.paramMap.get("id");
+    if (this._id) {
+      this.userService.get(this._id).then(res => {
+        this.user = <User>res;
+      })
+    }
+  }
 
   async presentAlert(tipo: string, texto: string) {
     const alert = await this.alertController.create({
