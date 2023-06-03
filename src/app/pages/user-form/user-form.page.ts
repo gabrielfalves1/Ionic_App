@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { UserService } from '../../services/user.service';
 import { User } from 'src/app/model/user';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -10,11 +11,23 @@ import { User } from 'src/app/model/user';
 })
 export class UserFormPage implements OnInit {
 
+  _id: string | null = null;
+
   ngOnInit() {
   }
 
+  getParam() {
+    this._id = this.activeRouter.snapshot.paramMap.get("id");
 
-  constructor(private alertController: AlertController, private userService: UserService) { }
+    if (this._id) {
+      this.userService.getUserById(this._id).then(res => {
+        this.user = <User>res;
+      })
+    }
+
+  }
+
+  constructor(private alertController: AlertController, private userService: UserService, private activeRouter: ActivatedRoute) { }
 
   public alertButtons = ['OK'];
   user = new User();

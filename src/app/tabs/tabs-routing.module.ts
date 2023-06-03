@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/user-form/user-form.module').then(m => m.UserFormPageModule)
       },
       {
+        path: 'userForm/:id',
+        loadChildren: () => import('../pages/user-form/user-form.module').then(m => m.UserFormPageModule)
+      },
+      {
         path: 'userEnter',
         loadChildren: () => import('../pages/user-enter/user-enter.module').then(m => m.UserEnterPageModule)
       },

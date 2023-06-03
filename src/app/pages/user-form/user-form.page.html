@@ -11,45 +11,39 @@
     </ion-toolbar>
   </ion-header>
 
-
   <form #fc="ngForm">
-
     <ion-list>
-
       <ion-item class="pt-10">
-        <ion-input [(ngModel)]="user.nome" name="nome" label="Nome" label-placement="floating" fill="out-line"
-          placeholder="Digite seu nome" required></ion-input>
+        <ion-input label="Nome" label-placement="floating" placeholder="Digite seu nome" [(ngModel)]="user.nome"
+          name="nome" required></ion-input>
       </ion-item>
 
       <ion-item class="pt-10">
-        <ion-input label="Email"
-          pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
-          [(ngModel)]="user.email" name="email" label-placement="floating" fill="out-line"
-          placeholder="Digite seu email" required></ion-input>
+        <ion-input type="email" label="E-mail" label-placement="floating" placeholder="Digite seu email"
+          [(ngModel)]="user.email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></ion-input>
       </ion-item>
 
       <ion-item class="pt-10">
-        <ion-input label="Senha" type="password" [(ngModel)]="user.senha" name="senha" label-placement="floating"
-          fill="out-line" placeholder="Digite sua senha" required></ion-input>
+        <ion-input type="password" label="Senha" label-placement="floating" placeholder="Digite sua Senha"
+          [(ngModel)]="user.senha" name="senha" #pass="ngModel"></ion-input>
       </ion-item>
 
       <ion-item class="pt-10">
-        <ion-input label="Confirme a senha" type="password" (ngModel)="confpass" #confpass name="senha"
-          label-placement="floating" fill="out-line" placeholder="Confirme a senha" required></ion-input>
+        <ion-input type="password" label="Senha" label-placement="floating" placeholder="Digite sua Senha"
+          (ngModel)="confpass" name="confsenha" #confpass="ngModel"></ion-input>
       </ion-item>
 
       <ion-item class="pt-10">
-        <ion-input label="Telefone" [(ngModel)]="user.telefone" name="telefone" label-placement="floating"
-          fill="out-line" placeholder="Digite seu telefone" required></ion-input>
+        <ion-input label="Telefone" label-placement="floating" placeholder="Digite seu Telefone"
+          [(ngModel)]="user.telefone" name="telefone"></ion-input>
       </ion-item>
 
-      <ion-item class="pt-10">
-        <ion-button [disabled]="fc.invalid" slot="end" (click)="save()">Salvar</ion-button>
-        <ion-button color="danger" slot="end" routerLink="/">Cancelar</ion-button>
-      </ion-item>
+      <div class="pt-10 ion-text-end">
+        <ion-button [disabled]="fc.invalid || (pass.value !== confpass.value)" (click)="save()">Salvar</ion-button>
+        <ion-button color="danger" routerLink="/">Cancelar</ion-button>
+      </div>
 
     </ion-list>
-
   </form>
 
 </ion-content>
