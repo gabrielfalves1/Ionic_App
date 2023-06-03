@@ -21,6 +21,7 @@ export class UserFormPage implements OnInit {
   _id: string | null = null;
 
   ngOnInit() {
+    this.getParam()
   }
 
   getParam() {
