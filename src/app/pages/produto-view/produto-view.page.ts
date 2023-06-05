@@ -10,7 +10,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
   styleUrls: ['./produto-view.page.scss'],
 })
 export class ProdutoViewPage implements OnInit {
-
+  //Feito por Gabriel Ferreira Alves
   _id: string | null = null;
   produto = new Produto();
 

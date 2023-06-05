@@ -8,6 +8,8 @@ import { Produto } from '../model/produto';
 })
 export class ProdutoService {
 
+  //Feito por Gabriel Ferreira Alves
+
   constructor() { }
 
   private firestore: Firestore = inject(Firestore);

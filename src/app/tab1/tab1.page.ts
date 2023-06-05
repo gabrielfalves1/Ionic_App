@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
+  //Feito por Gabriel Ferreira Alves
   constructor(private produtoService: ProdutoService, private router: Router) { }
 
   produtos: Produto[] = [];
