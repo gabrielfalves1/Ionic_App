@@ -41,9 +41,13 @@
           pattern="^(?!0*(\.0+)?$)(\d+|\d*\.\d+)$" required></ion-input>
       </ion-item>
 
+      <ion-item class="pt-10">
+        <ion-input label="Foto" [(ngModel)]="produto.foto" name="foto" label-placement="floating" fill="solid"
+          pattern=".{3,}" placeholder="Adicione a url da foto do produto" required></ion-input>
+      </ion-item>
+
       <ion-item>
         <ion-icon name="contact"></ion-icon>
-
       </ion-item>
 
       <ion-item>

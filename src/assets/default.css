@@ -26,6 +26,10 @@
     text-align: center;
 }
 
+.p-20 {
+    padding: 20px;
+}
+
 .text-end {
     text-align: end;
 }

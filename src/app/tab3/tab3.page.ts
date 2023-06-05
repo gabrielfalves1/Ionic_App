@@ -28,11 +28,17 @@ export class Tab3Page {
 
   async save() {
 
-    const response = await this.produtoService.addProduto(this.produto)
+    const response = await this.produtoService.add(this.produto)
 
     this.presentAlert("Sucesso", "Produto adicionado com sucesso!")
 
     console.log(this.produto)
+
+    this.clear();
+  }
+
+  clear() {
+    this.produto = new Produto();
   }
 
 }
