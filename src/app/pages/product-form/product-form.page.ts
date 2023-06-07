@@ -1,37 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { User } from 'src/app/model/user';
-import { UserService } from 'src/app/services/user.service';
+import { Product } from 'src/app/model/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
-  selector: 'app-user-form',
-  templateUrl: './user-form.page.html',
-  styleUrls: ['./user-form.page.scss'],
+  selector: 'app-product-form',
+  templateUrl: './product-form.page.html',
+  styleUrls: ['./product-form.page.scss'],
 })
-export class UserFormPage implements OnInit {
+export class ProductFormPage implements OnInit {
 
   constructor(
-    private userService: UserService,
+    private productService: ProductService,
     private alertController: AlertController,
     private activeRouter: ActivatedRoute
   ) { }
 
-  user = new User()
-  _id: string | null = null;
-
   ngOnInit() {
-    this.getParam()
   }
 
-  getParam() {
-    this._id = this.activeRouter.snapshot.paramMap.get("id");
-    if (this._id) {
-      this.userService.get(this._id).then(res => {
-        this.user = <User>res;
-      })
-    }
-  }
+  product = new Product;
 
   async presentAlert(tipo: string, texto: string) {
     const alert = await this.alertController.create({
@@ -44,7 +33,7 @@ export class UserFormPage implements OnInit {
   }
 
   save() {
-    this.userService.add(this.user)
+    this.productService.add(this.product)
       .then((res) => {
         console.log(res);
         this.presentAlert("Aviso", "Cadastrado");
@@ -54,7 +43,4 @@ export class UserFormPage implements OnInit {
         this.presentAlert("Erro", "Não cadastrado");
       })
   }
-
-
-
 }

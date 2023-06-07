@@ -35,16 +35,29 @@ const routes: Routes = [
         path: 'userList',
         loadChildren: () => import('../pages/user-list/user-list.module').then(m => m.UserListPageModule)
       },
+
+      {
+        path: 'productForm',
+        loadChildren: () => import('../pages/product-form/product-form.module').then(m => m.ProductFormPageModule)
+      },
+      {
+        path: 'productPerfil/:id',
+        loadChildren: () => import('../pages/product-perfil/product-perfil.module').then(m => m.ProductPerfilPageModule)
+      },
+      {
+        path: 'productList',
+        loadChildren: () => import('../pages/product-list/product-list.module').then(m => m.ProductListPageModule)
+      },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/productList',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/productList',
     pathMatch: 'full'
   }
 ];
