@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
@@ -14,7 +14,8 @@ export class UserFormPage implements OnInit {
   constructor(
     private alertController: AlertController,
     private userService: UserService,
-    private activeRouter: ActivatedRoute
+    private activeRouter: ActivatedRoute,
+    private router: Router
   ) { }
 
   user = new User()
@@ -42,19 +43,39 @@ export class UserFormPage implements OnInit {
     });
     await alert.present();
   }
-
   save() {
-    this.userService.add(this.user)
-      .then((res) => {
-        console.log(res);
-        this.presentAlert("Aviso", "Cadastrado");
-      })
-      .catch((err) => {
-        console.log(err);
-        this.presentAlert("Erro", "Não cadastrado");
-      })
+    try {
+      this.userService.add(this.user)
+        .then(async (res) => {
+          console.log(res);
+          this.presentAlert("Aviso", "Cadastrado");
+          this.router.navigate(["/"]);
+        })
+        .catch((err) => {
+          console.log(err);
+          this.presentAlert("Erro", "Não cadastrado");
+        })
+    } catch (err) {
+      this.presentAlert("Erro", "Sistema indisponível");
+    }
   }
 
-
-
+  update() {
+    try {
+      if (!this._id) throw new Error("Sistema indisponível")
+      this.userService.update(this.user, this._id)
+        .then((res) => {
+          console.log(res);
+          this.presentAlert("Aviso", "Atualizado");
+          this.router.navigate(["/"]);
+        })
+        .catch((err) => {
+          console.log(err);
+          this.presentAlert("Erro", "Não atualizado");
+        })
+    } catch (error: Error | any) {
+      console.error(error)
+      this.presentAlert("Erro", "Error ao acessar o sistema");
+    }
+  }
 }
