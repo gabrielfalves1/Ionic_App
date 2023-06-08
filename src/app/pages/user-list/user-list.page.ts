@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-list',
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserListPage implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private alertController: AlertController) { }
 
   users: User[] = [];
 
@@ -40,11 +41,39 @@ export class UserListPage implements OnInit {
     this.router.navigate(['/tabs/userForm', _id]);
   }
 
+
   handleRefresh(event: any) {
     setTimeout(() => {
       // Any calls to load data go here
       event.target.complete();
     }, 2000);
   }
+
+  async remove(id: string) {
+
+    const alert = await this.alertController.create({
+      header: 'Confirme',
+      //subHeader: 'Important message',
+      message: 'Deseja apagar o registro?',
+      buttons: [
+        {
+          text: 'Sim',
+          role: 'confirm',
+          handler: () => {
+            this.userService.delete(id);
+          }
+        },
+        {
+          text: 'Não',
+          role: 'Cancel',
+          handler: () => {
+          },
+        }
+      ],
+    });
+
+    await alert.present();
+  }
+
 
 }

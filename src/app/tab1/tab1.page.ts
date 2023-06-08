@@ -32,10 +32,10 @@ export class Tab1Page {
   }
 
   viewProduto(_id: string) {
-
     this.router.navigate(['/tabs/produto', _id]);
-
-
   }
 
+
+
 }
+

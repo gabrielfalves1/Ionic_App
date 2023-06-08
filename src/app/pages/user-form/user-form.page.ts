@@ -48,7 +48,6 @@ export class UserFormPage implements OnInit {
 
     this.userService.add(this.user)
       .then((res) => {
-
         console.log(res)
         this.presentAlert("Aviso", "Cadastrado");
       })
@@ -56,6 +55,24 @@ export class UserFormPage implements OnInit {
         console.log(err);
         this.presentAlert("Erro", "Não Cadastrado");
       });
+  }
+
+  update() {
+
+    try {
+      if (!this._id) throw new Error()
+      this.userService.update(this.user, this._id)
+        .then((res) => {
+          console.log(res)
+          this.presentAlert("Aviso", "Cadastrado");
+        })
+        .catch((err) => {
+          console.log(err);
+          this.presentAlert("Erro", "Não Atualizado");
+        });
+    } catch (err) {
+      this.presentAlert("Erro", "Sistema indisponível");
+    }
 
   }
 

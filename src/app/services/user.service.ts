@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, collectionData, addDoc, getDoc, getDocs, query, doc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, addDoc, getDoc, getDocs, query, doc, deleteDoc } from '@angular/fire/firestore';
 import { User } from '../model/user';
-
+import { updateDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +29,26 @@ export class UserService {
 
   }
 
-
   async getUserById(id: string) {
     const result = await getDoc(doc(this.firestore, 'users', id));
     //return result.data();
 
     return { _id: result.id, ...result.data() }
+  }
+
+  async update(user: User, _id: string) {
+    const result = await updateDoc(doc(this.firestore, 'users', _id), {
+      email: user.email,
+      nome: user.nome,
+      senha: user.senha,
+      telefone: user.telefone,
+    })
+
+    return result;
+  }
+
+  async delete(id: string) {
+    return await deleteDoc(doc(this.firestore, 'users', id))
   }
 
 }
