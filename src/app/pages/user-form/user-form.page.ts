@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserFormPage implements OnInit {
 
   constructor(
+    private userService: UserService,
     private alertController: AlertController,
     private userService: UserService,
     private activeRouter: ActivatedRoute,
