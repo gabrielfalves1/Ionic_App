@@ -6,4 +6,5 @@ export class User {
     foto: string = "";
     email: string = "";
     senha: string = "";
+    ativo: boolean = true;
 }

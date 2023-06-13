@@ -66,7 +66,7 @@ export class UserListPage implements OnInit {
           text: 'Sim',
           role: 'confirm',
           handler: () => {
-            this.userService.delete(id);
+            this.removeUser(id);
           },
         }, {
           text: 'Não',
@@ -79,4 +79,10 @@ export class UserListPage implements OnInit {
     await alert.present();
   }
 
+  removeUser(id: string) {
+    this.userService.delete(id)
+      .then(res => {
+        this.getList();
+      });
+  }
 }

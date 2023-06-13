@@ -14,7 +14,6 @@ export class UserFormPage implements OnInit {
   constructor(
     private userService: UserService,
     private alertController: AlertController,
-    private userService: UserService,
     private activeRouter: ActivatedRoute,
     private router: Router
   ) { }
