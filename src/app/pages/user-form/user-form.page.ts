@@ -43,6 +43,7 @@ export class UserFormPage implements OnInit {
     });
     await alert.present();
   }
+
   save() {
     try {
       this.userService.add(this.user)
