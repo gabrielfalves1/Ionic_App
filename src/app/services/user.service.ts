@@ -1,27 +1,16 @@
 import { Injectable, inject } from '@angular/core';
 import {
-  Firestore,
-  collection,
-  addDoc,
-  getDoc,
-  query,
-  getDocs,
-  doc,
-  updateDoc,
-  deleteDoc,
-  where,
-  setDoc,
+  Firestore, collection, addDoc, getDoc, query, getDocs, doc, updateDoc,
+  deleteDoc, where, setDoc,
 } from '@angular/fire/firestore';
 import {
-  Auth,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
+  Auth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut,
 } from '@angular/fire/auth';
+
+import { Storage, getDownloadURL, getStorage, ref, uploadBytesResumable, uploadString } from '@angular/fire/storage';
 import { User } from '../model/user';
 import { Router } from '@angular/router';
+import { url } from 'inspector';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +19,7 @@ export class UserService {
   constructor(private router: Router) { }
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
+  private readonly storage: Storage = inject(Storage);
   private userCollection = collection(this.firestore, 'users');
 
   async add(user: User) {
@@ -99,5 +89,20 @@ export class UserService {
   async loginGoogle() {
     const provider = new GoogleAuthProvider();
     return await signInWithPopup(this.auth, provider)
+  }
+
+  async setPhotoPerfil(imgName: string, imgBase64: string, id: string) {
+    const storageRef = ref(this.storage, "user/" + imgName);
+    return await uploadString(storageRef, imgBase64, "base64")
+      .then(async res => {
+        const result = await updateDoc(doc(this.firestore, 'users', id), {
+          foto: res.ref.fullPath
+        });
+      })
+  }
+
+  async getProtoPerfil(imgRef: string) {
+    const storage = getStorage();
+    return await getDownloadURL(ref(storage, imgRef))
   }
 }

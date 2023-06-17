@@ -37,11 +37,22 @@ export class UserPerfilPage implements OnInit {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Uri
+      resultType: CameraResultType.Base64
     });
-    const imageUrl = image.webPath;
-    this.imageSrc = imageUrl;
-    this.user.foto = this.imageSrc ? this.imageSrc : ""
+    // const imageUrl = image.webPath;
+    // this.imageSrc = imageUrl;
+    // this.user.foto = this.imageSrc ? this.imageSrc : "";
+    console.log(image)
+
+    if (image.base64String && this._id) {
+      let nameFile = Date.now().toString() + "." + image.format;
+      await this.userService.setPhotoPerfil(nameFile, image.base64String, this._id)
+      await this.userService.getProtoPerfil("user/" + nameFile)
+        .then(resUrl => {
+          this.user.foto = resUrl
+        })
+
+    }
   }
 
 }
