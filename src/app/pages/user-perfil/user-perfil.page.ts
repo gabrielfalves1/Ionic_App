@@ -27,8 +27,16 @@ export class UserPerfilPage implements OnInit {
   getParam() {
     this._id = this.activatedRouter.snapshot.paramMap.get("id");
     if (this._id) {
-      this.userService.get(this._id).then(res => {
+      this.userService.get(this._id).then(async res => {
         this.user = <User>res;
+        if (this.user.foto) {
+          await this.userService.getProtoPerfil(this.user.foto)
+            .then(res => {
+              this.imageSrc = res
+            })
+        } else {
+          this.imageSrc = "assets/perfil.webp"
+        }
       })
     }
   }
@@ -49,9 +57,8 @@ export class UserPerfilPage implements OnInit {
       await this.userService.setPhotoPerfil(nameFile, image.base64String, this._id)
       await this.userService.getProtoPerfil("user/" + nameFile)
         .then(resUrl => {
-          this.user.foto = resUrl
+          this.imageSrc = resUrl
         })
-
     }
   }
 
